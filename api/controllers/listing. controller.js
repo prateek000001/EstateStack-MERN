@@ -3,12 +3,16 @@ import { errorHandler } from '../utils/error.js';
 
 export const createListing = async (req, res, next) => {
   try {
-    const listing = await Listing.create(req.body);
+    const listing = await Listing.create({
+      ...req.body,
+      userRef: req.user.id,  // ✅ associate the listing with logged-in user
+    });
     return res.status(201).json(listing);
   } catch (error) {
     next(error);
   }
 };
+
 
 export const deleteListing = async (req, res, next) => {
   const listing = await Listing.findById(req.params.id);
