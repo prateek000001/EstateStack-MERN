@@ -14,4 +14,8 @@ server:{
 },
 
   plugins: [react(), tailwindcss()],
+   plugins: [
+    require('@tailwindcss/line-clamp'),
+    // ...
+  ],
 })
